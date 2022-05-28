@@ -19,6 +19,7 @@ def main():
     trainer.score()
     if args.save_path:
         trainer.save()
-
+    print(trainer.predict())
+    
 if __name__ == "__main__":
     main()
