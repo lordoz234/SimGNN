@@ -249,6 +249,7 @@ class SimGNNTrainer(object):
         for graph_pair in tqdm(self.testing_graphs):
             data = process_pair(graph_pair)
             self.ground_truth.append(calculate_normalized_ged(data))
+            print(self.ground_truth[-1])
             data = self.transfer_to_torch(data)
             target = data["target"]
             prediction = self.model(data)
