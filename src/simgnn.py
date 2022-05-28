@@ -254,7 +254,21 @@ class SimGNNTrainer(object):
             prediction = self.model(data)
             self.scores.append(calculate_loss(prediction, target))
         self.print_evaluation()
-
+        
+    def predict(self):
+        """
+        Predict on the test set.
+        """
+        print("\n\nModel prediction.\n")
+        self.model.eval()
+        pred = []
+        for graph_pair in tqdm(self.testing_graphs):
+            data = process_pair(graph_pair)
+            data = self.transfer_to_torch(data)
+            prediction = self.model(data)
+            pred.append(prediction)
+        return pred
+            
     def print_evaluation(self):
         """
         Printing the error rates.
